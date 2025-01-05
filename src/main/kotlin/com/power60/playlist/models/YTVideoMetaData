@@ -1,0 +1,13 @@
+package com.power60.playlist.models;
+
+import java.util.*
+
+interface YTVideoMetadata {
+    val timestamp: Long
+    val isTransition: Boolean
+    val videoId: String
+    val title: String
+    val tags: List<String>
+    val channelTitle: String?
+    val published: Date
+}
