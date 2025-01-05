@@ -24,6 +24,8 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.mongodb:mongodb-driver-sync:4.9.0")
+	implementation("org.testng:testng:7.1.0")
+	implementation("org.testng:testng:7.1.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
