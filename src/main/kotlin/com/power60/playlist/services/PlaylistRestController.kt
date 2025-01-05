@@ -1,5 +1,6 @@
 package com.power60.playlist.services
 
+import com.power60.playlist.actions.*
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -9,19 +10,32 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/playlist")
 class PlaylistRestController {
 
+    // TODO: Bind PlaylistMongoService as an eager singleton so we don't keep rebuilding it.
+    private val mongoService = PlaylistMongoService()
+
     @GetMapping("/")
     fun index(): String {
         return testFun()
     }
 
-    @PostMapping("/save-playlist")
-    fun handleSavePlaylist(): Boolean {
-        return true
-//        save_playlist_req = request.get_data().decode("utf-8")
-//        save_playlist_req_json = json.loads(save_playlist_req)
-//        playlist_id = SavePlaylist().main(save_playlist_req_json)
-//
-//        return {"playlist_id": playlist_id}, 200, response_headers
+    @PostMapping("/CreatePlaylist")
+    fun handleCreatePlaylist(request: CreatePlaylistRequest): CreatePlaylistResponse {
+        return CreatePlaylist(mongoService).main(request)
+    }
+
+    @PostMapping("/GetPlaylist")
+    fun handleGetPlaylist(request: GetPlaylistRequest): GetPlaylistResponse {
+        return GetPlaylist(mongoService).main(request)
+    }
+
+    @PostMapping("/UpdatePlaylist")
+    fun handleUpdatePlaylist(request: UpdatePlaylistRequest): UpdatePlaylistResponse {
+        return UpdatePlaylist(mongoService).main(request)
+    }
+
+    @PostMapping("/DeletePlaylist")
+    fun handleDeletePlaylist(request: DeletePlaylistRequest): DeletePlaylistResponse {
+        return DeletePlaylist(mongoService).main(request)
     }
 
     fun testFun(): String {
