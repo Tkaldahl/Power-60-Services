@@ -6,3 +6,5 @@ pluginManagement {
 	}
 }
 rootProject.name = "power60"
+include("playlist")
+include("ident")
